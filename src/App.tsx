@@ -1,9 +1,15 @@
+import Layout from "./components/Layout/Layout";
+import {Routes} from "react-router-dom";
 
 const App = () => {
     return (
-        <div>
+        <>
+            <Layout>
+                < Routes>
 
-        </div>
+                </Routes>
+            </Layout>
+        </>
     );
 };
 

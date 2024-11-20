@@ -12,3 +12,7 @@ export interface PizzaMutation {
 }
 
 export type ApiPizza = Omit<PizzaMutation, "id">;
+
+export interface PizzaList {
+    [id: string]: ApiPizza;
+}

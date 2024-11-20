@@ -1,9 +1,11 @@
 import React, {ChangeEvent, useState} from 'react';
 import {ApiPizza, PizzaMutation} from "../../../types.ts";
+import Spinner from "../../UI/Spinner/Spinner.tsx";
 
 interface Props {
     addNewPizza: (newPizza: ApiPizza) => void;
     existingPizza?: PizzaMutation;
+    isLoading: boolean
 }
 
 const initialState = {
@@ -12,7 +14,7 @@ const initialState = {
     image: '',
 }
 
-const AdminForm: React.FC<Props> = ({addNewPizza, existingPizza = initialState}) => {
+const AdminForm: React.FC<Props> = ({addNewPizza, existingPizza = initialState, isLoading}) => {
     const [pizza, setPizza] = useState<PizzaMutation>(existingPizza)
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +37,8 @@ const AdminForm: React.FC<Props> = ({addNewPizza, existingPizza = initialState})
 
     return (
         <form onSubmit={handleSubmit}>
+            {isLoading ? <Spinner /> :
+                <>
             <div className="form-group">
                 <label htmlFor="name">
                     Name:
@@ -65,7 +69,7 @@ const AdminForm: React.FC<Props> = ({addNewPizza, existingPizza = initialState})
 
             <div className="form-group">
                 <label htmlFor="image">
-                    Name:
+                    Photo:
                     <input
                         type="url"
                         id="image"
@@ -77,6 +81,8 @@ const AdminForm: React.FC<Props> = ({addNewPizza, existingPizza = initialState})
                 </label>
             </div>
             <button type="submit">Create</button>
+                </>
+}
         </form>
     );
 };

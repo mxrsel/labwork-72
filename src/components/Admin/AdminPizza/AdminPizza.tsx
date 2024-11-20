@@ -10,7 +10,7 @@ const AdminPizza: React.FC<Props> = ({pizzas}) => {
     return (
         <div>
             {pizzas.map((pizza)=> (
-                <AdminPizzaItem pizza={pizza} />
+                <AdminPizzaItem key={pizza.id} pizza={pizza} />
             ))}
         </div>
     );

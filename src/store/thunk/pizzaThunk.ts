@@ -1,11 +1,11 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axiosApi from "../../axiosApi.ts";
-import {PizzaList} from "../../types.ts";
+import {ApiPizza, Pizza, PizzaList} from "../../types.ts";
 
-export const fetchPizza = createAsyncThunk(
+export const fetchPizza = createAsyncThunk<Pizza[], void>(
     'pizza/fetchPizza',
     async() => {
-        const response = await axiosApi.get('pizza.json');
+        const response: {data: PizzaList | null} = await axiosApi.get('/pizza.json');
         const pizzaList = response.data
 
         if (pizzaList === null) return [];
@@ -20,5 +20,12 @@ export const fetchPizza = createAsyncThunk(
         });
 
         return newPizza
+    }
+)
+
+export const createNewPizzaCard = createAsyncThunk<void, ApiPizza>(
+    'pizza/createNewPizzaCard',
+    async(pizza) => {
+        await axiosApi.post('/pizza.json', {...pizza})
     }
 )

@@ -7,8 +7,10 @@ interface Props {
 
 const AdminPizzaItem: React.FC<Props> = ({pizza}) => {
     return (
-        <div>
-
+        <div className='card'>
+            <img src={pizza.image} alt={pizza.name} className='card-img' />
+            <h1>{pizza.price}</h1>
+            <span>{pizza.price}</span>
         </div>
     );
 };

@@ -41,7 +41,15 @@ const cartSlice = createSlice({
 
                 return pizzaCart;
             })
-        }
+        },
+        removePizzaFromCart: (state, { payload: pizzaId }: PayloadAction<string>) => {
+            const index = state.pizzasCart.findIndex(
+                (pizzaCart) => pizzaCart.pizza.id === pizzaId
+            );
+            if (index !== -1) {
+                state.pizzasCart.splice(index, 1);
+            }
+        },
     }
 })
 
@@ -49,5 +57,6 @@ export const pizzaCartReducer = cartSlice.reducer;
 export const {
     addPizzaToCart,
     clearPizzaCart,
-    updatePizza
+    updatePizza,
+    removePizzaFromCart
 } = cartSlice.actions

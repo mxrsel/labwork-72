@@ -9,14 +9,18 @@ interface Props {
 
 const ClientPizzaItem: React.FC<Props> = ({pizza}) => {
     const dispatch = useAppDispatch()
+
+    const handleAddToCart = () => {
+        dispatch(addPizzaToCart(pizza))
+    }
     return (
-        <button onClick={() => dispatch(addPizzaToCart(pizza))}>
             <div className='card'>
                 <img src={pizza.image} alt={pizza.name} className='card-img' />
                 <h1>Name: {pizza.name}</h1>
                 <span>Price: {pizza.price}</span>
+                <button onClick={handleAddToCart}>Add to Cart</button>
             </div>
-        </button>
+
     );
 };
 

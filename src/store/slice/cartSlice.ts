@@ -14,17 +14,15 @@ const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        addPizzaToCart: (state, {payload: pizza}: PayloadAction<Pizza>) => {
-            const indexPizza = state.pizzasCart.findIndex(pizzaCart => pizzaCart.pizza.id === pizza.id);
+        addPizzaToCart: (state, { payload: pizza }: PayloadAction<Pizza>) => {
+            const indexPizza = state.pizzasCart.findIndex(
+                (pizzaCart) => pizzaCart.pizza.id === pizza.id
+            );
 
             if (indexPizza !== -1) {
-                state.pizzasCart = [...state.pizzasCart, {pizza, amount: 1}];
+                state.pizzasCart[indexPizza].amount += 1;
             } else {
-                const copyCart = [...state.pizzasCart];
-                const copyCartPizza = {...copyCart[indexPizza]};
-                copyCartPizza.amount++;
-                copyCart[indexPizza] = copyCartPizza;
-                state.pizzasCart = [...copyCart];
+                state.pizzasCart.push({ pizza, amount: 1 });
             }
         },
         clearPizzaCart: (state) => {

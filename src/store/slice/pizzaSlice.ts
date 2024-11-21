@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {ApiPizza, Pizza} from "../../types.ts";
-import {changePizza, createNewPizzaCard, deleteOnePizzaDIsh, fetchPizza, getDishById} from "../thunk/pizzaThunk.ts";
+import {changePizza, createNewPizzaCard, deleteOnePizzaDish, fetchPizza, getDishById} from "../thunk/pizzaThunk.ts";
 
 interface PizzaState {
     pizzas: Pizza[];
@@ -76,15 +76,15 @@ const pizzaSlice = createSlice({
                 }
             )
             .addCase(
-                deleteOnePizzaDIsh.pending, (state, {meta}) => {
+                deleteOnePizzaDish.pending, (state, {meta}) => {
                     state.isDeletedPizza = meta.arg
                 })
             .addCase(
-                deleteOnePizzaDIsh.fulfilled, (state) => {
+                deleteOnePizzaDish.fulfilled, (state) => {
                     state.isLoading = false
                 })
             .addCase(
-                deleteOnePizzaDIsh.rejected, (state) => {
+                deleteOnePizzaDish.rejected, (state) => {
                     state.isLoading = false
                 }
             )

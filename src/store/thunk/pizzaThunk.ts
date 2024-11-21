@@ -48,7 +48,7 @@ export const changePizza = createAsyncThunk<void, {pizzaId: string, pizza: ApiPi
     }
 )
 
-export const deleteOnePizzaDIsh = createAsyncThunk(
+export const deleteOnePizzaDish = createAsyncThunk(
     'pizza/deleteOnePizzaDIsh',
     async(pizzaId: string) => {
         await axiosApi.delete(`/pizza/${pizzaId}.json`)

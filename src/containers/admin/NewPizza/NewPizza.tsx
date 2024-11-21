@@ -11,7 +11,7 @@ const NewPizza = () => {
 
     const createNewPizza = async(pizza: ApiPizza) => {
         await dispatch(createNewPizzaCard(pizza));
-        navigate('/admin')
+        navigate('/admin/dishes')
     }
     return (
         <div>

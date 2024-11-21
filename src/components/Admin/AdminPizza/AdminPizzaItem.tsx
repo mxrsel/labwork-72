@@ -2,7 +2,7 @@ import React from 'react';
 import {Pizza} from "../../../types.ts";
 import {NavLink} from "react-router-dom";
 import {useAppDispatch} from "../../../app/hooks.ts";
-import {deleteOnePizzaDIsh} from "../../../store/thunk/pizzaThunk.ts";
+import {deleteOnePizzaDish} from "../../../store/thunk/pizzaThunk.ts";
 
 interface Props {
     pizza: Pizza;
@@ -17,7 +17,7 @@ const AdminPizzaItem: React.FC<Props> = ({pizza}) => {
             <span>Price: {pizza.price}</span>
 
             <NavLink to={`/admin/editDish/${pizza.id}`}>edit</NavLink>
-            <button className='btn btn-danger' type='submit' onClick={() => dispatch(deleteOnePizzaDIsh(pizza.id))}>delete</button>
+            <button className='btn btn-danger' type='submit' onClick={() => dispatch(deleteOnePizzaDish(pizza.id))}>delete</button>
         </div>
     );
 };

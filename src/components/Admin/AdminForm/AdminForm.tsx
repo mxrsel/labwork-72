@@ -5,6 +5,7 @@ import Spinner from "../../UI/Spinner/Spinner.tsx";
 interface Props {
     addNewPizza: (newPizza: ApiPizza) => void;
     existingPizza?: PizzaMutation;
+    isEditingPizza?: boolean;
     isLoading: boolean
 }
 
@@ -14,7 +15,7 @@ const initialState = {
     image: '',
 }
 
-const AdminForm: React.FC<Props> = ({addNewPizza, existingPizza = initialState, isLoading}) => {
+const AdminForm: React.FC<Props> = ({addNewPizza, existingPizza = initialState, isLoading, isEditingPizza = false}) => {
     const [pizza, setPizza] = useState<PizzaMutation>(existingPizza)
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -32,6 +33,14 @@ const AdminForm: React.FC<Props> = ({addNewPizza, existingPizza = initialState, 
             ...pizza,
             price: Number(pizza.price),
         })
+
+        if (!isEditingPizza) {
+            setPizza({
+                name: '',
+                price: 0,
+                image: '',
+            });
+        }
     }
 
 
@@ -80,9 +89,12 @@ const AdminForm: React.FC<Props> = ({addNewPizza, existingPizza = initialState, 
                         className='form-control'/>
                 </label>
             </div>
-            <button type="submit">Create</button>
+                    {isEditingPizza ? <button className='btn btn-success' type='submit'>Edit</button>
+                        :
+                        <button className='btn btn-dark' type="submit">Create</button>
+                    }
                 </>
-}
+            }
         </form>
     );
 };

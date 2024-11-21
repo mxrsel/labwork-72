@@ -29,3 +29,21 @@ export const createNewPizzaCard = createAsyncThunk<void, ApiPizza>(
         await axiosApi.post('/pizza.json', {...pizza})
     }
 )
+
+export const getDishById = createAsyncThunk<ApiPizza | null, string>(
+    'pizza/getDishById',
+    async(pizzaId) => {
+        const response = await axiosApi<ApiPizza | null>(`/pizza/${pizzaId}.json`);
+
+        if(!response.data) return null;
+
+        return response.data
+    }
+)
+
+export const changePizza = createAsyncThunk<void, {pizzaId: string, pizza: ApiPizza}>(
+    'pizza/changePizza',
+    async({pizzaId, pizza}) => {
+        await axiosApi.put(`/pizza/${pizzaId}.json`, {...pizza})
+    }
+)

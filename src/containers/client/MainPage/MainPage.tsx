@@ -1,13 +1,18 @@
 import {useAppDispatch, useAppSelector} from "../../../app/hooks.ts";
-import {useCallback, useEffect} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {fetchPizza} from "../../../store/thunk/pizzaThunk.ts";
 import Spinner from "../../../components/UI/Spinner/Spinner.tsx";
 import ClientPizza from "../../../components/Client/ClientPizza/ClientPizza.tsx";
+import PizzaCart from "../../../components/Client/pizzaCart/pizzaCart.tsx";
+import Modal from "../../../components/UI/Modal/Modal.tsx";
+
+
 
 const MainPage = () => {
     const dispatch = useAppDispatch();
     const pizza = useAppSelector((state) => state.pizza.pizzas);
     const loading = useAppSelector((state) => state.pizza.isLoading);
+    const [showModal, setShowModal] = useState<boolean>(false)
 
 
     const fetchingPizzaData = useCallback(async () => {
@@ -31,6 +36,13 @@ const MainPage = () => {
                     }
                 </div>
             }
+            <h1>Total: </h1>
+            <button onClick={() => setShowModal(true)}>Checkout</button>
+            <div>
+                <Modal show={showModal} closeModal={() => setShowModal(false)} title='Order'>
+                    <PizzaCart />
+                </Modal>
+            </div>
         </>
     );
 };

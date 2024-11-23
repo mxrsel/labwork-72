@@ -5,6 +5,7 @@ import NewPizza from "./containers/admin/NewPizza/NewPizza.tsx";
 import AdminMainPage from "./containers/admin/AdminMainPage/AdminMainPage.tsx";
 import AdminEditDish from "./components/Admin/AdminEditDish/AdminEditDish.tsx";
 import MainPage from "./containers/client/MainPage/MainPage.tsx";
+import AdminOrderList from "./containers/admin/AdminOrderList/AdminOrderList.tsx";
 
 const App = () => {
     return (
@@ -14,6 +15,7 @@ const App = () => {
                     <Route path="/" element={<MainPage />}/>
                     <Route path='/admin' element={<AdminMainPage />}/>
                     <Route path='/admin/dishes' element={<AdminDishesList />}/>
+                    <Route path='/admin/orders' element={<AdminOrderList />}/>
                     <Route path='/admin/newPizza' element={<NewPizza />}/>
                     <Route path='/admin/editDish/:pizzaId' element={<AdminEditDish />} />
                 </Routes>

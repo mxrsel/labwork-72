@@ -21,3 +21,16 @@ export interface PizzaCart {
     pizza: Pizza;
     amount: number
 }
+
+
+export interface OrdersMutation {
+    orderInfo: PizzaCart
+}
+
+export interface Order extends OrdersMutation {
+    id: string;
+}
+
+export interface ApiOrders {
+[id: string]: OrdersMutation
+}
